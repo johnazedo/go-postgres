@@ -32,6 +32,5 @@ func getDatabaseInfo() string {
 	dbname := os.Getenv("POSTGRES_DB")
 	host := os.Getenv("POSTGRES_HOST")
 	port := os.Getenv("POSTGRES_PORT")
-
 	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", host, port, user, dbname, password)
 }

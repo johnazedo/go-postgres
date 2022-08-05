@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func SetupPostgres() (*gorm.DB, error) {
+func GetDatabase() (*gorm.DB, error) {
 	db, err := config.GetInstance()
 	if err != nil {
 		return nil, err

@@ -15,7 +15,8 @@ func (v *Versions) AddMigrations(migrations []*gormigrate.Migration) {
 
 func (v *Versions) Migrate(db *gorm.DB) error {
 	instance := gormigrate.New(db, gormigrate.DefaultOptions, v.migrations)
-	if err := instance.Migrate(); err != nil {
+	err := instance.Migrate()
+	if err != nil {
 		return err
 	}
 	return nil

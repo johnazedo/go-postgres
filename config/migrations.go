@@ -5,20 +5,16 @@ import (
 	"gorm.io/gorm"
 )
 
-type Migrations struct {
+type Versions struct {
 	migrations []*gormigrate.Migration
 }
 
-func (m *Migrations) AddMigration(migration *gormigrate.Migration) {
-	m.migrations = append(m.migrations, migration)
+func (v *Versions) AddMigrations(migrations []*gormigrate.Migration) {
+	v.migrations = migrations
 }
 
-func (m *Migrations) AddMigrations(migrations []*gormigrate.Migration) {
-	m.migrations = migrations
-}
-
-func (m *Migrations) Migrate(db *gorm.DB) error {
-	instance := gormigrate.New(db, gormigrate.DefaultOptions, m.migrations)
+func (v *Versions) Migrate(db *gorm.DB) error {
+	instance := gormigrate.New(db, gormigrate.DefaultOptions, v.migrations)
 	if err := instance.Migrate(); err != nil {
 		return err
 	}
